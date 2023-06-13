@@ -7,7 +7,7 @@ function App() {
       <PinInput
         length={6}
         label="Pin Input"
-        value=""
+        value="987"
         allowedCharacters="numeric"
         error
         helperText="helper text"
