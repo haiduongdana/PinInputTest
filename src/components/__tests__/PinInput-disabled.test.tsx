@@ -7,11 +7,11 @@ afterEach(() => {
   cleanup();
 })
 
-const PROPS: PinInputProps = { length: 6, label: 'Pin Input', value: '987654', allowedCharacters: 'numeric', error: false, helperText: "helper text" }
+const PROPS: PinInputProps = { length: 6, label: 'Pin Input', value: '987654', disabled: true, allowedCharacters: 'numeric', error: false, helperText: "helper text" }
 
-describe("Test Component", () => {
+describe("Test Input disabled", () => {
 
-  test("Test Rendering", () => {
+  test("Input disabled", () => {
     const testRenderer = render(
       <PinInput {...PROPS} />
     );
@@ -22,14 +22,9 @@ describe("Test Component", () => {
     // Test default value
     for (let i = 0; i < allInputs.length; i++) {
       const inputElm = allInputs[i] as HTMLInputElement;
-      const expectVal = PROPS.value ? PROPS.value[i] : null;
-      expect(inputElm.value).toBe(expectVal);
+      expect(inputElm).toBeDisabled();
     }
 
-    // Test focus on the first input
-    const firstInput = testRenderer.getByLabelText('Character 1') as HTMLInputElement;
-    firstInput.focus()
-    expect(firstInput).toHaveFocus();
 
   })
 })

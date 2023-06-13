@@ -4,10 +4,10 @@ import "@testing-library/jest-dom";
 import { PinInputProps } from "../PinInput/PinInput.types";
 
 afterEach(() => {
-  cleanup(); 
+  cleanup();
 })
 
-const PROPS: PinInputProps = {length: 6, label: 'Pin Input', value: '987654'}
+const PROPS: PinInputProps = { length: 6, label: 'Pin Input', value: '987654', allowedCharacters: 'numeric', error: false, helperText: "helper text" }
 
 describe("Test Input only digit", () => {
 
@@ -17,11 +17,11 @@ describe("Test Input only digit", () => {
     );
     const input = testRenderer.getByLabelText('Character 1') as HTMLInputElement;
     // Input character, expected empty value
-    fireEvent.change(input, {target: {value: 'd'}})
+    fireEvent.change(input, { target: { value: 'd' } })
     expect(input.value).toBe("")
 
     // Input digit, expected enterd digit
-    fireEvent.change(input, {target: {value: '1'}})
+    fireEvent.change(input, { target: { value: '1' } })
     expect(input.value).toBe("1")
   })
 })
