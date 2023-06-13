@@ -17,7 +17,7 @@ const PinInput: React.FC<PinInputProps> = ({
   ariaLabel,
   autoFocus = true,
   disabled,
-  error,
+  error = false,
   helperText,
   isPassword = false,
   label,
@@ -174,6 +174,7 @@ const PinInput: React.FC<PinInputProps> = ({
         onKeyDown={onKeyDownHandler}
         onFocus={onFocusHandler}
         onPaste={onPasteHandler}
+        isError={error}
       />
     );
   }

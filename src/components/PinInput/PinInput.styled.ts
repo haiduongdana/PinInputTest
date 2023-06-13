@@ -13,11 +13,11 @@ const itemCss = css`
   background-color: white;
 `;
 
-export const Input = styled.input`
+export const Input = styled.input<{ isError?: boolean }>`
   ${itemCss}
 
   border-radius: 4px;
-  border: 1px solid grey;
+  border: 1px solid ${(props) => (props.isError ? "red" : "grey")};
   outline: none;
 
   &:focus {
