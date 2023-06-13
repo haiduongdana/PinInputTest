@@ -4,7 +4,14 @@ import {
   allowedCharactersValues,
   propsMap,
 } from "./PinInput.types";
-import { Container, Headline, Input, Text, Wrapper } from "./PinInput.styled";
+import {
+  Container,
+  Wrapper,
+  Input,
+  Text,
+  InputWrapper,
+  ErrorText,
+} from "./PinInput.styled";
 
 const PinInput: React.FC<PinInputProps> = ({
   ariaLabel,
@@ -19,9 +26,10 @@ const PinInput: React.FC<PinInputProps> = ({
   placeholder,
   value,
   allowedCharacters = "numeric",
+  inputValidation,
 }) => {
   const inputsRef = useRef<Array<HTMLInputElement>>([]);
-  const inputProps = propsMap[allowedCharacters];
+  const inputProps = inputValidation ?? propsMap[allowedCharacters];
 
   const sendResult = useCallback(() => {
     const valued = inputsRef.current.map((input) => input.value).join("");
@@ -32,9 +40,9 @@ const PinInput: React.FC<PinInputProps> = ({
   }, [onChange]);
 
   const onPasteHandler = useCallback(
-    (e: React.ClipboardEvent<HTMLInputElement>, text?: string) => {
+    (e?: React.ClipboardEvent<HTMLInputElement>, text?: string) => {
       const pastedValue = e
-        ? e.clipboardData.getData("Text")
+        ? e?.clipboardData?.getData("Text")
         : (text as string);
 
       let currentInput = 0;
@@ -87,9 +95,7 @@ const PinInput: React.FC<PinInputProps> = ({
 
   useEffect(() => {
     if (value) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      onPasteHandler(null, value);
+      onPasteHandler(undefined, value);
     }
   }, [onPasteHandler, value]);
 
@@ -174,11 +180,15 @@ const PinInput: React.FC<PinInputProps> = ({
 
   return (
     <Container>
-      <Headline>
+      <Wrapper>
         <Text>{label}</Text>
-      </Headline>
-      <Wrapper>{inputs}</Wrapper>
-      {error && <Text error>{helperText}</Text>}
+      </Wrapper>
+      <InputWrapper>{inputs}</InputWrapper>
+      {error && (
+        <Wrapper>
+          <ErrorText>{helperText}</ErrorText>
+        </Wrapper>
+      )}
     </Container>
   );
 };

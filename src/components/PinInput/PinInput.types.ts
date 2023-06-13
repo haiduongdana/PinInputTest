@@ -11,6 +11,7 @@ export interface PinInputProps {
   helperText?: string;
   onChange?: (value: string) => void;
   allowedCharacters?: (typeof allowedCharactersValues)[number];
+  inputValidation?: InputProps;
 }
 
 export const allowedCharactersValues = [

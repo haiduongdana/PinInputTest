@@ -5,8 +5,8 @@ const itemCss = css`
   text-align: center;
   padding: 10px;
   padding-bottom: 8px;
-  width: 56px;
-  height: 56px;
+  width: 32px;
+  height: 32px;
   font-size: 32px;
   box-sizing: border-box;
   color: black;
@@ -19,20 +19,46 @@ export const Input = styled.input`
   border-radius: 4px;
   border: 1px solid grey;
   outline: none;
+
+  @media (min-width: 768px) {
+    /* Tablets */
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (min-width: 1200px) {
+    /* Desktop */
+    width: 56px;
+    height: 56px;
+  }
 `;
 
 export const Container = styled.div``;
 
-export const Headline = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 5px;
-`;
-
-export const Text = styled.p<{ error?: boolean }>``;
-
 export const Wrapper = styled.div`
   display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+`;
+
+export const Text = styled.p`
+  font-weight: 400;
+  font-size: 16px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+
+  @media (min-width: 768px) {
+    /* Tablets */
+    font-size: 24px;
+  }
+`;
+
+export const ErrorText = styled(Text)`
+  color: red;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
   flex-direction: row;
-  padding: 0 -5px;
+  padding: 0 5px;
 `;
