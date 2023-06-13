@@ -33,7 +33,7 @@ const PinInput: React.FC<PinInputProps> = ({
 
   const sendResult = useCallback(() => {
     const valued = inputsRef.current.map((input) => input.value).join("");
-    console.log({ valued });
+    // console.log({ valued });
     if (onChange) {
       onChange(valued);
     }
