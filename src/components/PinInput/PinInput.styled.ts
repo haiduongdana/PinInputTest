@@ -20,6 +20,10 @@ export const Input = styled.input`
   border: 1px solid grey;
   outline: none;
 
+  &:focus {
+    border-color: blue;
+  }
+
   @media (min-width: 768px) {
     /* Tablets */
     width: 40px;
