@@ -70,7 +70,7 @@ export const PinInputWithDefaultValue: Story = {
   },
 };
 
-export const PinInputWidthError: Story = {
+export const PinInputWithError: Story = {
   args: {
     error: true,
     helperText: "Something went wrong!",
